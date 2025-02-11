@@ -35,6 +35,14 @@ export class Docente implements IDocente{
 
     setSIAPE(valor: number): void {
         if(valor == null){throw new Error("O SIAPE do docente deve ser informado!");}
+        
+        if(valor == 0){throw new Error("O SIAPE do docente deve ser diferente de 0");}
+
+        
+        if(valor < 0){throw new Error("O SIAPE do docente deve ser maior do que 0");}
+
+        if((valor/1000000>10)&&(valor/1000000<1))throw new Error("O SIAPE do docente deve ter 7 casas decimais");
+
         this.SIAPE = valor;
     }
     getSIAPE(): number {
