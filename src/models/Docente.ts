@@ -19,6 +19,13 @@ export class Docente implements IDocente{
 
     setTelefone(valor: number): void {
         if(valor == null){throw new Error("O telefone do docente deve ser informado!");}
+        
+        if(valor == 0){throw new Error("O telefone do docente deve ser diferente de 0");}
+
+        if(valor < 0){throw new Error("O telefone do docente deve ser maior do que 0");}
+
+        if((valor/10000000000>10)&&(valor/10000000000<1))throw new Error("O telefone do docente deve ter 11 casas decimais");
+
         this.telefone = valor;
     }
     getTelefone(): number {
@@ -35,6 +42,13 @@ export class Docente implements IDocente{
 
     setSIAPE(valor: number): void {
         if(valor == null){throw new Error("O SIAPE do docente deve ser informado!");}
+        
+        if(valor == 0){throw new Error("O SIAPE do docente deve ser diferente de 0");}
+        
+        if(valor < 0){throw new Error("O SIAPE do docente deve ser maior do que 0");}
+
+        if((valor/1000000>10)&&(valor/1000000<1))throw new Error("O SIAPE do docente deve ter 7 casas decimais");
+
         this.SIAPE = valor;
     }
     getSIAPE(): number {
@@ -50,7 +64,7 @@ export class Docente implements IDocente{
     }
     setSemestre(valor: string): void {
         if(valor == ""){throw new Error("O semestre do docente deve ser informado!");}
-        this.semestre = valor;
+        this.semestre = valor; 
     }
     getSemestre(): string {
         return this.semestre;
@@ -58,6 +72,11 @@ export class Docente implements IDocente{
 
     setAno(valor: number): void {
         if(valor == null){throw new Error("O ano do docente deve ser informado!");}
+        console.log(valor);
+        if(valor == 0){throw new Error("O ano do docente deve ser diferente de 0");}
+        
+        if(valor < 0){throw new Error("O ano do docente deve ser maior do que 0");}
+
         this.ano = valor;
     }
     getAno(): number {
