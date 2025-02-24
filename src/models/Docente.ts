@@ -71,11 +71,13 @@ export class Docente implements IDocente{
     }
 
     setAno(valor: number): void {
-        if(valor == null){throw new Error("O ano do docente deve ser informado!");}
-        console.log(valor);
-        if(valor == 0){throw new Error("O ano do docente deve ser diferente de 0");}
+        //if(valor == null){throw new Error("O ano do docente deve ser informado!");}
+        // console.log(valor);
+        //f(valor == 0){throw new Error("O ano do docente deve ser diferente de 0");}
         
-        if(valor < 0){throw new Error("O ano do docente deve ser maior do que 0");}
+        // if(valor < 0){throw new Error("O ano do docente deve ser maior do que 0");}
+
+
 
         this.ano = valor;
     }
