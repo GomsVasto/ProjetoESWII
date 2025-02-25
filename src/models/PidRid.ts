@@ -1,7 +1,6 @@
 type TipoAtividade = "APME" | "AAE" | "AO" | "API" | "AE" | "AGIR" | "AQC";
 
-
-import { Atividade } from "./TipoAtividade";
+import { Atividade } from "./Atividade";
 import { Disciplina } from "./DIsciplina";
 
 export class PidRid {
@@ -19,16 +18,8 @@ export class PidRid {
         this.disciplinas = [];
     }
 
-    adicionarAtividade(tipo: TipoAtividade, horas: number): void {
-        this.atividades.push(new Atividade(tipo, horas));
-    }
-
-    calcularTotalHorasA(): number {
-        let th:number = 0;
-        for (let i = 0; i < this.atividades.length; i++) {
-            th = th + this.atividades[i].getHoras();
-        }
-        return th;
+    adicionarAtividade(tipo: TipoAtividade, chAtividades: number[]): void {
+        this.atividades.push(new Atividade(tipo, chAtividades));
     }
 
     calcularTotalHorasD():number{
