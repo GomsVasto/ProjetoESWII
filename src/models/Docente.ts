@@ -8,6 +8,7 @@ export class Docente implements IDocente{
     private SIAPE!: number
     private telefone!: number
     private ano!: number
+    private senha!: String;
 
     setNome(nome: string): void {
         if(nome == ""){throw new Error("O nome do docente deve ser informado!");}
@@ -83,6 +84,13 @@ export class Docente implements IDocente{
     }
     getAno(): number {
         return this.ano;
+    }
+
+    public getSenha(): String {
+        return this.senha;
+    }
+    public setSenha(value: String) {
+        this.senha = value;
     }
 
 }

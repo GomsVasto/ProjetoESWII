@@ -1,6 +1,6 @@
-import {CargaHoraria} from "../../models/CargaHoraria";
+import { PidRid } from "../models/PidRid";
 
-const pid = new CargaHoraria("Filipe Fernandes", 2024, 1);
+const pid = new PidRid("Filipe Fernandes", 2024, 1);
 pid.adicionarAtividade("Engenharia de Software I - BSI", "Ensino", 3);
 pid.adicionarAtividade("Engenharia de Software III - BSI", "Ensino", 2.25);
 pid.adicionarAtividade("Preparação de Aulas", "Ensino", 6);
