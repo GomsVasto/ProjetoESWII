@@ -1,25 +1,71 @@
 type TipoAtividade = "APME" | "AAE" | "AO" | "API" | "AE" | "AGIR" | "AQC";
 
+
 import { Atividade } from "./Atividade";
 import { Disciplina } from "./DIsciplina";
 
 export class PidRid {
-    docente: string;
-    ano: number;
-    semestre: number;
+    private SIAPE: number;
+    private observacao: string;
     atividades: Atividade[];
     disciplinas: Disciplina[];
 
-    constructor(docente: string, ano: number, semestre: number) {
-        this.docente = docente;
-        this.ano = ano;
-        this.semestre = semestre;
-        this.atividades = [];
-        this.disciplinas = [];
+    setSIAPE(valor: number): void {
+        if(valor == null){throw new Error("O SIAPE do docente deve ser informado!");}
+        
+        if(valor == 0){throw new Error("O SIAPE do docente deve ser diferente de 0");}
+        
+        if(valor < 0){throw new Error("O SIAPE do docente deve ser maior do que 0");}
+
+        if((valor/1000000>10)&&(valor/1000000<1))throw new Error("O SIAPE do docente deve ter 7 casas decimais");
+
+        this.SIAPE = valor;
+    }
+    getSIAPE(): number {
+        return this.SIAPE;
+    }
+  
+    public getObservacao(): string {
+        return this.observacao;
+    }
+    public setObservacao(valor: string) {
+        this.observacao = valor;
     }
 
-    adicionarAtividade(tipo: TipoAtividade, chAtividades: number[]): void {
-        this.atividades.push(new Atividade(tipo, chAtividades));
+    adicionarAtividade(tipo: TipoAtividade, horas: number[]): void {
+        horas.forEach((horas,i) =>{
+            if (horas < 0) 
+                throw new Error("As horas devems ser maior que 0");
+        });
+
+        if(this.isTipoAtividade(tipo))
+            throw new Error("A atividade informada é inválida");
+
+        this.atividades.push(new Atividade(tipo, horas));
+    }
+
+    listarAtividades(): void {
+        console.log(`Atividades do docente ${this.SIAPE}):`);
+        this.atividades.forEach((atividade, index) => {
+            console.log(`${index + 1}. ${atividade.getTipo()}`);
+            atividade.chAtividades.forEach((chHoras,i) =>{
+                console.log(`${i} ${chHoras}`);
+            })
+            console.log(`Total de horas: ${atividade.getTotalHorasA}`);
+        });
+    }
+
+    adicionarDisciplina(nome: string, ch: number): void {
+        if (nome =="")
+            throw new Error("O nome da disciplina precisa ser informado");
+        if (ch < 0)
+            throw new Error("A carga horária não pode ser menor que 0");
+            
+        this.disciplinas.push(new Disciplina(nome, ch));
+    }
+
+    getDisciplinas(): Disciplina[]{
+        return this.disciplinas;
     }
 
     calcularTotalHorasD():number{
@@ -30,12 +76,9 @@ export class PidRid {
         return th;
     }
 
-    listarAtividades(): void {
-        console.log(`Atividades do docente ${this.docente} (${this.ano} - ${this.semestre}º semestre):`);
-        this.atividades.forEach((atividade, index) => {
-            console.log(`${index + 1}. ${atividade.tipo} - ${atividade.horas} horas`);
-        });
-        console.log(`Total de horas: ${this.calcularTotalHoras()}`);
-    }
+    isTipoAtividade(valor: any): valor is TipoAtividade {
+        const tiposValidos: TipoAtividade[] = ["APME", "AAE", "AO", "API", "AE", "AGIR", "AQC"];
+        return tiposValidos.includes(valor);
+      }
 }
 

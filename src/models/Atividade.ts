@@ -4,7 +4,6 @@ type TipoAtividade = "APME" | "AAE" | "AO" | "API" | "AE" | "AGIR" | "AQC";
 export class Atividade {
     private tipo: TipoAtividade;
     chAtividades: number[];
-    //xdasdszsdad
 
     constructor(tipo: TipoAtividade, chAtividades: number[]) {
         this.setTipo(tipo);
