@@ -40,7 +40,6 @@ describe("Disciplina",()=>{
 
 describe("Atividade " , ()=>{
     it('deve ser cadastrada', ()=>{
-        
         expect(pid.listarAtividades())
     })
 })

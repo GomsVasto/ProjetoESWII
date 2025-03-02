@@ -192,7 +192,7 @@ describe("Docente",()=>{
 
         it("deve lançar um erro se for negativo",()=>{
             const ano = -1;
-            docente.setAno(ano);
+            // docente.setAno(ano); está dando erro porque está chamando o método 2x - retire essa linha 
 
             try {
                 docente.setAno(ano);
@@ -203,7 +203,7 @@ describe("Docente",()=>{
 
         it("deve lançar um erro se for igual a 0",()=>{
             const ano = 0;
-            docente.setAno(ano);
+            // docente.setAno(ano); está dando erro porque está chamando o método 2x - retire essa linha 
 
             try {
                 docente.setAno(ano);
