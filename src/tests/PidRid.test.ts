@@ -1,15 +1,45 @@
+import { Disciplina } from "../models/DIsciplina";
 import { PidRid } from "../models/PidRid";
+//SIAPE - observacao - Atividade - Disciplina
 
-// const pid = new PidRid("Filipe Fernandes", 2024, 1);
-// pid.adicionarAtividade("Engenharia de Software I - BSI", "Ensino", 3);
-// pid.adicionarAtividade("Engenharia de Software III - BSI", "Ensino", 2.25);
-// pid.adicionarAtividade("Preparação de Aulas", "Ensino", 6);
-// pid.adicionarAtividade("Atendimento de Alunos Extraclasse", "Ensino", 1.63);
-// pid.adicionarAtividade("Participação em Eventos Acadêmicos", "Pesquisa", 1);
+let pid: PidRid;
 
+beforeAll(() =>{
+    pid = new PidRid();
+});
 
-describe("A Atividade " , ()=>{
+describe("Disciplina",()=>{
+    it("Deve ser cadastrada",()=>{
+        pid.adicionarDisciplina("teste",18);
+
+        let array1 = new Disciplina[1];
+
+        array1.push(new Disciplina("teste",18));
+
+        expect(pid.getDisciplinas()).toEqual(array1)
+    });
+
+    it("Deve gerar erro se o nome for vazio",()=>{
+        try {
+            pid.adicionarDisciplina("",18);
+        } catch (error) {
+            expect(error).toBeInstanceOf(Error);
+        }
+        
+    });
+
+    it("Deve gerar erro se a carga horaria for menor que 0",()=>{
+        try {
+            pid.adicionarDisciplina("ere",-12);
+        } catch (error) {
+            expect(error).toBeInstanceOf(Error);
+        }
+        
+    });
+});
+
+describe("Atividade " , ()=>{
     it('deve ser cadastrada', ()=>{
-        // expect(pid.listarAtividades())
+        expect(pid.listarAtividades())
     })
 })
