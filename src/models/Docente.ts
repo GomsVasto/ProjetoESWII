@@ -10,6 +10,17 @@ export class Docente implements IDocente{
     private ano!: number
     private senha!: String;
 
+    constructor(nome,departamento,email,semestre,SIAPE,telefone,ano,senha){
+        this.setNome(nome);
+        this.setDepartamento(departamento);
+        this.setEmail(email);
+        this.setSemestre(semestre);
+        this.setSIAPE(SIAPE);
+        this.setTelefone(telefone);
+        this.setAno(ano);
+        this.setSenha(senha);
+    }
+
     setNome(nome: string): void {
         if(nome == ""){throw new Error("O nome do docente deve ser informado!");}
         this.nome = nome;
@@ -91,3 +102,5 @@ export class Docente implements IDocente{
         this.senha = value;
     }
 }
+
+ module.exports = Docente

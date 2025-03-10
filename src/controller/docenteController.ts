@@ -20,20 +20,17 @@ export class DocenteController {
 
     static criarDocente(req: Request, res: Response): void {
         try {
-            const { nome, departamento, email, semestre, SIAPE, telefone, ano, senha } = req.body;
 
-            const novoDocente = new Docente();
-            novoDocente.setNome(nome);
-            novoDocente.setDepartamento(departamento);
-            novoDocente.setEmail(email);
-            novoDocente.setSemestre(semestre);
-            novoDocente.setSIAPE(SIAPE);
-            novoDocente.setTelefone(telefone);
-            novoDocente.setAno(ano);
-            novoDocente.setSenha(senha);
+            let nome = req.body.nome;
+            let departamento = req.body.departamento;
+            let email = req.body.email;
+            let semestre = req.body.semestre;
+            let SIAPE = req.body.SIAPE;
+            let telefone = req.body.telefone;
+            let ano = req.body.ano;
+            let senha = req.body.senha;
 
-            this.docentes.push(novoDocente);
-            res.status(201).json(novoDocente);
+            this.docentes.push(new Docente(nome,departamento,email,semestre,SIAPE,telefone,ano,senha));
             // res.redirect("/index");
         } catch (error: any) {
             res.status(400).json({ mensagem: error.message });
@@ -76,4 +73,5 @@ export class DocenteController {
         res.json({ mensagem: "Docente removido com sucesso" });
     }
 }
+
 module.exports={DocenteController};
