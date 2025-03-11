@@ -1,7 +1,7 @@
 import express from "express";
 // import cors from "cors";
 import bodyParser from "body-parser";
-import docenteRoutes from "./routes/routes";
+import docenteRoutes from "./routes/docenteRoutes";
 
 const app = express();
 const PORT = 3000;
