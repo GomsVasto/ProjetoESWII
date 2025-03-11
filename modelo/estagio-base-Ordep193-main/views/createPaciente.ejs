@@ -1,0 +1,22 @@
+<%- include('./layouts/header'); -%>
+
+<% if (alert) { %>
+    <h2><%= alert %></h2>
+<% } %>
+<form method="post" action="/addPaciente">
+    <div class="mb-3">
+      <label for="nomePaciente" class="form-label">Nome do Paciente</label>
+      <input type="text" class="form-control" id="nomePaciente" name="nomePaciente">
+
+      <label for="nCarteira" class="form-label">Número da Carteira</label>
+      <input type="text" class="form-control" id="nCarteira" name="nCarteira">
+
+      <label for="idPlano" class="form-label">Id do Plano</label>
+      <input type="text" class="form-control" id="idPlano" name="idPlano">
+
+      <label for="idEspecilizacao" class="form-label">Id da Especialização</label>
+      <input type="text" class="form-control" id="idEspecilizacao" name="idEspecilizacao">
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+<%- include('./layouts/footer'); -%>

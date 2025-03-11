@@ -1,0 +1,13 @@
+<%- include('./layouts/header'); -%>
+
+<% if (alert) { %>
+  <div class="alert alert-primary" role="alert">
+    <%= alert %>
+  </div>
+<% } %>
+
+<div class="container">
+  <h1>Bem vindo ao <%= title %></h1>
+</div>
+
+<%- include('./layouts/footer'); -%>

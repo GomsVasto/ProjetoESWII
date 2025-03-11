@@ -1,0 +1,38 @@
+<%- include('./layouts/header'); -%>
+
+<% if (alert) { %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <%= alert %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% } %>
+
+  <h1>Bem vindo ao <%= title %></h1>
+  
+<a class="btn btn-primary" href="../criarPlano">Criar Plano</a>
+<% if(planos.length == 0){%>
+    <h2>Nenhum plano foi cadastrado</h2>
+<%}else{%>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Atualizar</th>
+            <th scope="col">Deletar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(i = 0; i < planos.length;i++){ %>
+            <tr>
+                <th scope="row"><%= planos[i].id %></th>
+                <td><%= planos[i].nome %></td>
+                <td><a href="/updatePlano/<%= planos[i].id %>" class="btn btn-primary">Atualizar</a></td>
+                <td><a href="/deletePlano/<%= planos[i].id %>" class="btn btn-danger">Deletar</a></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <%}%>
+
+<%- include('./layouts/footer'); -%>
