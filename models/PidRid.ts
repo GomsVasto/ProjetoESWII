@@ -7,8 +7,8 @@ import { Disciplina } from "./Disciplina";
 export class PidRid {
     private SIAPE: number;
     private observacao: string;
-    atividades: Atividade[];
-    disciplinas: Disciplina[];
+    atividades = new Array<Atividade>();
+    disciplinas = new Array <Disciplina>();
 
     setSIAPE(valor: number): void {
         if(valor == null){throw new Error("O SIAPE do docente deve ser informado!");}
@@ -17,7 +17,7 @@ export class PidRid {
         
         if(valor < 0){throw new Error("O SIAPE do docente deve ser maior do que 0");}
 
-        if((valor/1000000>10)&&(valor/1000000<1))throw new Error("O SIAPE do docente deve ter 7 casas decimais");
+        if((valor/1000000>10)||(valor/1000000<1))throw new Error("O SIAPE do docente deve ter 7 casas decimais");
 
         this.SIAPE = valor;
     }
@@ -34,11 +34,11 @@ export class PidRid {
 
     adicionarAtividade(tipo: TipoAtividade, horas: number[]): void {
         horas.forEach((horas,i) =>{
-            if (horas < 0) 
-                throw new Error("As horas devems ser maior que 0");
+            if (i < 0) 
+                throw new Error("As horas devem ser maior que 0");
         });
 
-        if(this.isTipoAtividade(tipo))
+        if(!this.isTipoAtividade(tipo))
             throw new Error("A atividade informada é inválida");
 
         this.atividades.push(new Atividade(tipo, horas));
@@ -78,6 +78,8 @@ export class PidRid {
 
     isTipoAtividade(valor: any): valor is TipoAtividade {
         const tiposValidos: TipoAtividade[] = ["APME", "AAE", "AO", "API", "AE", "AGIR", "AQC"];
+        if(!tiposValidos.includes(valor))
+            throw new Error("O tipo deve ser válido");
         return tiposValidos.includes(valor);
       }
 }
