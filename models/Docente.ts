@@ -1,6 +1,6 @@
 import { IDocente } from "./IDocente";
 
-class Docente implements IDocente{
+export class Docente implements IDocente{
     private nome!: string
     private departamento!: string
     private email!: string
@@ -106,5 +106,3 @@ class Docente implements IDocente{
 async function setNome(nome: string) {
     this.Docente.setNome(nome);
 }
-
-module.exports = {setNome,}
