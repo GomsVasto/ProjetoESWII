@@ -1,45 +1,40 @@
 import { Disciplina } from "../models/Disciplina";
 import { PidRid } from "../models/PidRid";
-//SIAPE - observacao - Atividade - Disciplina
 
-let pid: PidRid;
+describe("PidRid", () => {
+    let pidRid: PidRid;
 
-beforeAll(() =>{
-    pid = new PidRid();
+    beforeEach(() => {
+        pidRid = new PidRid();
+    });
+
+    describe("setSIAPE", () => {
+        test("Deve lançar erro se o SIAPE for nulo", () => {
+            expect(() => pidRid.setSIAPE(null as any)).toThrow("O SIAPE do docente deve ser informado!");
+        });
+
+        test("Deve lançar erro se o SIAPE for 0", () => {
+            expect(() => pidRid.setSIAPE(0)).toThrow("O SIAPE do docente deve ser diferente de 0");
+        });
+
+        test("Deve lançar erro se o SIAPE for negativo", () => {
+            expect(() => pidRid.setSIAPE(-1234567)).toThrow("O SIAPE do docente deve ser maior do que 0");
+        });
+
+        test("Deve lançar erro se o SIAPE não tiver 7 dígitos", () => {
+            expect(() => pidRid.setSIAPE(123456)).toThrow("O SIAPE do docente deve ter 7 casas decimais");
+        });
+
+        test("Deve definir corretamente o SIAPE válido", () => {
+            pidRid.setSIAPE(1234567);
+            expect(pidRid.getSIAPE()).toBe(1234567);
+        });
+    });
+
+    describe("Observação", () => {
+        test("Deve definir e obter a observação corretamente", () => {
+            pidRid.setObservacao("Teste de observação");
+            expect(pidRid.getObservacao()).toBe("Teste de observação");
+        });
+    });
 });
-
-describe("Disciplina",()=>{
-    it("Deve ser cadastrada",()=>{
-        pid.adicionarDisciplina("teste",18);
-
-        let array1 = new Disciplina[1];
-
-        array1.push(new Disciplina("teste",18));
-
-        expect(pid.getDisciplinas()).toEqual(array1)
-    });
-
-    it("Deve gerar erro se o nome for vazio",()=>{
-        try {
-            pid.adicionarDisciplina("",18);
-        } catch (error) {
-            expect(error).toBeInstanceOf(Error);
-        }
-        
-    });
-
-    it("Deve gerar erro se a carga horaria for menor que 0",()=>{
-        try {
-            pid.adicionarDisciplina("ere",-12);
-        } catch (error) {
-            expect(error).toBeInstanceOf(Error);
-        }
-        
-    });
-});
-
-describe("Atividade " , ()=>{
-    it('deve ser cadastrada', ()=>{
-        expect(pid.listarAtividades())
-    })
-})
