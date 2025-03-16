@@ -38,6 +38,7 @@ describe("PidRid", () => {
             expect(pidRid.getObservacao()).toBe("Teste de observação");
         });
     });
+
     describe("Tipo Atividade", () =>{
         test("Deve lançar erro ao definir um tipo inválido", () => {
         expect(() => pidRid.isTipoAtividade("INVALIDO" as any)).toThrow();
@@ -64,7 +65,7 @@ describe("PidRid", () => {
             });
 
             test("Deve lançar um erro quando for negativo", () => {
-                expect(pidRid.adicionarAtividade("APME",[10,-5,20])).toThrow;
+                expect(pidRid.adicionarAtividade("APME",[10,-5,20])).toThrow();
             });
         });
     
