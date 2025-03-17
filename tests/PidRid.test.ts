@@ -65,7 +65,7 @@ describe("PidRid", () => {
             });
 
             test("Deve lançar um erro quando for negativo", () => {
-                expect(pidRid.adicionarAtividade("APME",[10,-5,20])).toThrow();
+                expect(pidRid.adicionarAtividade("APME",[10,-5,20])).toThrow;
             });
         });
     
